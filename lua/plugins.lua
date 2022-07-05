@@ -8,6 +8,7 @@ return require('packer').startup(function()
 
     -- Autocomplete
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-nvim-lsp-signature-help' -- Signature help
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
@@ -23,9 +24,12 @@ return require('packer').startup(function()
     -- Colors
     use 'rafi/awesome-vim-colorschemes'
 
-    -- Airline
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
+    -- Lualine
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+    use 'arkav/lualine-lsp-progress' -- LSP Progress indicator
 
     -- Git integration
     use 'tpope/vim-fugitive'
@@ -86,7 +90,6 @@ return require('packer').startup(function()
         'Shatur/neovim-session-manager',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-
 
     -- Trim trailing whitespaces
     use 'cappyzawa/trim.nvim'

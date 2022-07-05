@@ -22,3 +22,11 @@ vim.keymap.set('n', '<Leader>a', '<Cmd>Telescope live_grep<CR>')
 
 -- ZenMode
 vim.keymap.set('n', '<Leader>z', '<Cmd>ZenMode<CR>')
+
+-- Autofix
+vim.keymap.set('n', '<Leader>p', '<Cmd>EslintFixAll<CR>')
+
+-- Diagnostics
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)

@@ -15,5 +15,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.softtabstop = 0
+vim.o.updatetime = 300
 
 vim.g.mapleader = " "
