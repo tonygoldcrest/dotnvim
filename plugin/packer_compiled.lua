@@ -174,6 +174,11 @@ _G.packer_plugins = {
     path = "/Users/antosha/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["trim.nvim"] = {
+    loaded = true,
+    path = "/Users/antosha/.local/share/nvim/site/pack/packer/start/trim.nvim",
+    url = "https://github.com/cappyzawa/trim.nvim"
+  },
   ["vim-airline"] = {
     loaded = true,
     path = "/Users/antosha/.local/share/nvim/site/pack/packer/start/vim-airline",
