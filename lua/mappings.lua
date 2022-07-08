@@ -18,7 +18,7 @@ vim.keymap.set('n', '<Leader>qc', '<Cmd>BufferCloseAllButCurrent<CR>')
 -- Telescope
 vim.keymap.set('n', '<C-p>', '<Cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<C-b>', '<Cmd>Telescope buffers<CR>')
-vim.keymap.set('n', '<Leader>a', '<Cmd>Telescope live_grep<CR>')
+vim.keymap.set('n', '<Leader>a', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
 -- ZenMode
 vim.keymap.set('n', '<Leader>z', '<Cmd>ZenMode<CR>')
