@@ -19,6 +19,11 @@ vim.keymap.set('n', '<Leader>qc', '<Cmd>BufferCloseAllButCurrent<CR>')
 vim.keymap.set('n', '<C-p>', '<Cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<C-b>', '<Cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<Leader>a', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+vim.keymap.set('n', '<Leader>ds', '<Cmd>Telescope diagnostics<CR>')
+
+-- Diagnostics
+vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
 -- ZenMode
 vim.keymap.set('n', '<Leader>z', '<Cmd>ZenMode<CR>')
