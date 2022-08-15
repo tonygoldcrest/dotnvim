@@ -35,3 +35,6 @@ vim.keymap.set('n', '<Leader>p', '<Cmd>EslintFixAll<CR>')
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+
+-- Quickfix
+vim.keymap.set('n', '<leader>cc', '<cmd>cclose<cr>', { silent = true })
