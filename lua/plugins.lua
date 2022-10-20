@@ -63,7 +63,7 @@ return require('packer').startup({ function()
     use 'kyazdani42/nvim-web-devicons'
 
     -- Display vertical indent lines
-    use 'Yggdroot/indentLine'
+    use "lukas-reineke/indent-blankline.nvim"
 
     -- Local vimrc for project overrides
     use 'embear/vim-localvimrc'
@@ -85,6 +85,9 @@ return require('packer').startup({ function()
 
     -- Rainbow parens
     use 'p00f/nvim-ts-rainbow'
+
+    -- Display current function name
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     -- Fuzzy finder
     use {
