@@ -1,10 +1,9 @@
-require('globals')
-
 require('plugins')
+
+require('globals')
 
 require('config')
 
 require('mappings')
 
-vim.g.colors_name = 'solarized8'
-vim.opt.background = 'light'
+vim.cmd('colorscheme nordfox')

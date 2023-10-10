@@ -74,20 +74,15 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
-  ["awesome-vim-colorschemes"] = {
-    loaded = true,
-    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/awesome-vim-colorschemes",
-    url = "https://github.com/rafi/awesome-vim-colorschemes"
-  },
   ["barbar.nvim"] = {
     loaded = true,
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
@@ -98,11 +93,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help"
-  },
-  cmp_luasnip = {
-    loaded = true,
-    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["emmet-vim"] = {
     loaded = true,
@@ -129,20 +119,35 @@ _G.packer_plugins = {
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["neoconf.nvim"] = {
+    loaded = true,
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/neoconf.nvim",
+    url = "https://github.com/folke/neoconf.nvim"
+  },
   ["neovim-session-manager"] = {
     loaded = true,
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/neovim-session-manager",
     url = "https://github.com/Shatur/neovim-session-manager"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
-  },
-  ["nvim-lsp-installer"] = {
-    loaded = true,
-    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
-    url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -169,10 +174,15 @@ _G.packer_plugins = {
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
-  ["nvim-ts-rainbow"] = {
+  ["nvim-ts-rainbow2"] = {
     loaded = true,
-    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
-    url = "https://github.com/p00f/nvim-ts-rainbow"
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow2",
+    url = "https://github.com/HiPhish/nvim-ts-rainbow2"
+  },
+  ["nvim-vtsls"] = {
+    loaded = true,
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/nvim-vtsls",
+    url = "https://github.com/yioneko/nvim-vtsls"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -200,7 +210,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim"
   },
   ["telescope.nvim"] = {
-    config = { "\27LJ\2\nS\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\19live_grep_args\19load_extension\14telescope\frequire\0" },
+    config = { "\27LJ\2\n¡\1\0\0\5\0\n\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\b\0'\2\t\0B\0\2\1K\0\1\0\19live_grep_args\19load_extension\rdefaults\1\0\0\17path_display\1\0\1\26dynamic_preview_title\2\1\2\0\0\rtruncate\nsetup\14telescope\frequire\0" },
     loaded = true,
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
@@ -209,6 +219,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/trim.nvim",
     url = "https://github.com/cappyzawa/trim.nvim"
+  },
+  ["typescript-tools.nvim"] = {
+    loaded = true,
+    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/typescript-tools.nvim",
+    url = "https://github.com/pmizio/typescript-tools.nvim"
   },
   ["vim-commentary"] = {
     loaded = true,
@@ -224,11 +239,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-hexokinase"] = {
-    loaded = true,
-    path = "/Users/anton.korolkov/.local/share/nvim/site/pack/packer/start/vim-hexokinase",
-    url = "https://github.com/RRethy/vim-hexokinase"
   },
   ["vim-localvimrc"] = {
     loaded = true,
@@ -260,7 +270,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\nS\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\19live_grep_args\19load_extension\14telescope\frequire\0", "config", "telescope.nvim")
+try_loadstring("\27LJ\2\n¡\1\0\0\5\0\n\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\b\0'\2\t\0B\0\2\1K\0\1\0\19live_grep_args\19load_extension\rdefaults\1\0\0\17path_display\1\0\1\26dynamic_preview_title\2\1\2\0\0\rtruncate\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
 
 _G._packer.inside_compile = false

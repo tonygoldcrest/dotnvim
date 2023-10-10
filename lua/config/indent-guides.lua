@@ -4,4 +4,4 @@
 -- vim.g.indentLine_concealcursor='nc'
 -- vim.cmd([[ set list lcs=tab:\|\ "indent ]])
 
-require("indent_blankline").setup()
+require("ibl").setup()

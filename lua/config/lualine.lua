@@ -1,7 +1,7 @@
 require('lualine').setup({
     options = {
         icons_enabled = true,
-        theme = 'solarized_light',
+        theme = 'nordfox',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {},
@@ -11,7 +11,16 @@ require('lualine').setup({
     sections = {
         lualine_a = {'mode'},
         lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {'filename', 'lsp_progress'},
+        lualine_c = {
+            {
+                'filename',
+                path = 1,
+            },
+            {
+                'lsp_progress',
+                display_components = { 'lsp_client_name', 'spinner', { 'percentage' }},
+            }
+        },
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
         lualine_z = {'location'}

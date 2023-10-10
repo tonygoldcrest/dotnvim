@@ -16,15 +16,29 @@ return require('packer').startup({ function()
     use 'wbthomason/packer.nvim'
 
     -- LSP
-    use "williamboman/nvim-lsp-installer" -- Automatic LSP installer
-    use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+    -- use "williamboman/nvim-lsp-installer" -- Automatic LSP installer
+    -- use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+
+    use 'folke/neoconf.nvim'
+
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
+
+    use {
+        "pmizio/typescript-tools.nvim",
+        requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
+    }
+
+    use 'yioneko/nvim-vtsls'
 
     -- Autocomplete
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-nvim-lsp-signature-help' -- Signature help
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
     -- Filesystem explorer
     use {
@@ -35,7 +49,7 @@ return require('packer').startup({ function()
     }
 
     -- Colors
-    use 'rafi/awesome-vim-colorschemes'
+    use 'EdenEast/nightfox.nvim'
 
     -- Lualine
     use {
@@ -74,17 +88,14 @@ return require('packer').startup({ function()
     -- Vim tmux seamless navigation
     use 'christoomey/vim-tmux-navigator'
 
-    -- Highlight colors
-    use { 'RRethy/vim-hexokinase', run = 'make hexokinase' }
-
     -- Barline
     use 'romgrk/barbar.nvim'
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 'nvim-treesitter/nvim-treesitter' }
 
     -- Rainbow parens
-    use 'p00f/nvim-ts-rainbow'
+    use 'HiPhish/nvim-ts-rainbow2'
 
     -- Display current function name
     use 'nvim-treesitter/nvim-treesitter-context'
@@ -97,6 +108,13 @@ return require('packer').startup({ function()
             { "nvim-telescope/telescope-live-grep-args.nvim" },
         },
         config = function()
+            require("telescope").setup{
+                defaults = {
+                    path_display={"truncate"},
+                    dynamic_preview_title=true
+                }
+            }
+
             require("telescope").load_extension("live_grep_args")
         end
     }
