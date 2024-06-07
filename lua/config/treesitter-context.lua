@@ -1,3 +1,3 @@
-require'treesitter-context'.setup {
-    max_lines = 4
+require 'treesitter-context'.setup {
+	max_lines = 4
 }

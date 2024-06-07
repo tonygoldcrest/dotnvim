@@ -32,9 +32,17 @@ vim.keymap.set('n', '<Leader>z', '<Cmd>ZenMode<CR>')
 vim.keymap.set('n', '<Leader>p', '<Cmd>EslintFixAll<CR>')
 
 -- Diagnostics
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
 -- Quickfix
 vim.keymap.set('n', '<leader>cc', '<cmd>cclose<cr>', { silent = true })
+
+vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+	if vim.snippet.active({ direction = 1 }) then
+		return '<cmd>lua vim.snippet.jump(1)<cr>'
+	else
+		return '<Tab>'
+	end
+end, { expr = true })
