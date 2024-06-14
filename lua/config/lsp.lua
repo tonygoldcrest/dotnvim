@@ -58,14 +58,15 @@ lspconfig.lua_ls.setup {
 lspconfig.tsserver.setup {
 	capabilities = capabilities,
 	init_options = {
+		maxTsServerMemory = 12288,
 		preferences = {
 			includeInlayParameterNameHints = 'all',
-			includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+			-- includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 			includeInlayFunctionParameterTypeHints = true,
-			includeInlayVariableTypeHints = true,
+			-- includeInlayVariableTypeHints = true,
 			includeInlayPropertyDeclarationTypeHints = true,
-			includeInlayFunctionLikeReturnTypeHints = true,
-			includeInlayEnumMemberValueHints = true,
+			-- includeInlayFunctionLikeReturnTypeHints = true,
+			-- includeInlayEnumMemberValueHints = true,
 			importModuleSpecifierPreference = 'non-relative',
 		},
 	},
@@ -100,10 +101,4 @@ lspconfig.rust_analyzer.setup {
 -- 	cmd = {'clangd', '--query-driver=/usr/bin/g++'},
 -- }
 
-lspconfig.wgsl_analyzer.setup {
-	capabilities = capabilities,
-	cmd = { "/Users/antosha/.cargo/bin/wgsl_analyzer" },
-	filetypes = { "wgsl" },
-	root_dir = lspconfig.util.root_pattern(".git", "wgsl"),
-	settings = {},
-}
+require("lsp-file-operations").setup()

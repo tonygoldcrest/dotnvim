@@ -30,6 +30,14 @@ return require('packer').startup({
 		}
 
 		use {
+			'antosha417/nvim-lsp-file-operations',
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"nvim-tree/nvim-tree.lua",
+			}
+		}
+
+		use {
 			"pmizio/typescript-tools.nvim",
 			requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
 		}
@@ -37,10 +45,10 @@ return require('packer').startup({
 		use 'yioneko/nvim-vtsls'
 
 		-- Autocomplete
-		use 'hrsh7th/nvim-cmp'                -- Autocompletion plugin
+		use 'hrsh7th/nvim-cmp'              -- Autocompletion plugin
 		use 'hrsh7th/cmp-buffer'
 		use 'hrsh7th/cmp-nvim-lsp-signature-help' -- Signature help
-		use 'hrsh7th/cmp-nvim-lsp'            -- LSP source for nvim-cmp
+		use 'hrsh7th/cmp-nvim-lsp'          -- LSP source for nvim-cmp
 
 		-- Filesystem explorer
 		use {
@@ -61,7 +69,6 @@ return require('packer').startup({
 		use 'arkav/lualine-lsp-progress' -- LSP Progress indicator
 
 		-- Git integration
-		use 'tpope/vim-fugitive'
 		use 'lewis6991/gitsigns.nvim'
 
 		-- Comments
@@ -80,9 +87,6 @@ return require('packer').startup({
 
 		-- Display vertical indent lines
 		use "lukas-reineke/indent-blankline.nvim"
-
-		-- Local vimrc for project overrides
-		use 'embear/vim-localvimrc'
 
 		-- Disable search highlight when done searching
 		use 'romainl/vim-cool'
