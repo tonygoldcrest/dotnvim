@@ -1,148 +1,114 @@
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-		install_path })
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup({
-	function()
-		-- Plugin Manager
-		use 'wbthomason/packer.nvim'
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-		-- LSP
-		-- use "williamboman/nvim-lsp-installer" -- Automatic LSP installer
-		-- use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+-- Setup lazy.nvim
+require("lazy").setup({
+	-- LSP
+	--  "williamboman/nvim-lsp-installer" -- Automatic LSP installer
+	--  'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
-		use 'folke/neoconf.nvim'
+	{ 'folke/neoconf.nvim' },
 
-		use {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"neovim/nvim-lspconfig",
-		}
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim"},
+	{ "neovim/nvim-lspconfig" },
 
-		use {
-			"pmizio/typescript-tools.nvim",
-			requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
-		}
+	-- Autocomplete
+	{ 'hrsh7th/nvim-cmp' },
+	{ 'hrsh7th/cmp-buffer' },
+	{ 'hrsh7th/cmp-nvim-lsp-signature-help' }, -- Signature help
+	{ 'hrsh7th/cmp-nvim-lsp' },          -- LSP source for nvim-cmp
 
-		use 'yioneko/nvim-vtsls'
+	-- Colors
+	{ 'EdenEast/nightfox.nvim' },
 
-		-- Autocomplete
-		use 'hrsh7th/nvim-cmp'                -- Autocompletion plugin
-		use 'hrsh7th/cmp-buffer'
-		use 'hrsh7th/cmp-nvim-lsp-signature-help' -- Signature help
-		use 'hrsh7th/cmp-nvim-lsp'            -- LSP source for nvim-cmp
+	-- Lualine
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'kyazdani42/nvim-web-devicons' }
+	},
+	{	 'arkav/lualine-lsp-progress' }, -- LSP Progress indicator
 
-		-- Filesystem explorer
-		use {
-			'kyazdani42/nvim-tree.lua',
-			requires = {
-				'kyazdani42/nvim-web-devicons', -- optional, for file icons
-			},
-		}
+	-- Git integration
+	{ 'tpope/vim-fugitive' },
+	{ 'lewis6991/gitsigns.nvim' },
 
-		-- Colors
-		use 'EdenEast/nightfox.nvim'
+	-- Switch surroundings
+	{ 'tpope/vim-surround' },
+	{ 'tpope/vim-repeat'},
 
-		-- Lualine
-		use {
-			'nvim-lualine/lualine.nvim',
-			requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-		}
-		use 'arkav/lualine-lsp-progress' -- LSP Progress indicator
+	-- Dev Icons
+	{ 'kyazdani42/nvim-web-devicons' },
 
-		-- Git integration
-		use 'tpope/vim-fugitive'
-		use 'lewis6991/gitsigns.nvim'
+	-- Display vertical indent lines
+	{ "lukas-reineke/indent-blankline.nvim" },
 
-		-- Comments
-		use 'JoosepAlviste/nvim-ts-context-commentstring'
-		use 'tpope/vim-commentary'
+	-- Local vimrc for project overrides
+	{ 'embear/vim-localvimrc' },
 
-		-- Emmet
-		use 'mattn/emmet-vim'
+	-- Disable search highlight when done searching
+	{ 'romainl/vim-cool' },
 
-		-- Switch surroundings
-		use 'tpope/vim-surround'
-		use 'tpope/vim-repeat' -- and . repeat for it
+	-- Vim tmux seamless navigation
+	{ 'christoomey/vim-tmux-navigator' },
 
-		-- Dev Icons
-		use 'kyazdani42/nvim-web-devicons'
+	-- Treesitter
+	{ 'nvim-treesitter/nvim-treesitter' },
 
-		-- Display vertical indent lines
-		use "lukas-reineke/indent-blankline.nvim"
+	-- Display current function name
+	{ 'nvim-treesitter/nvim-treesitter-context' },
 
-		-- Local vimrc for project overrides
-		use 'embear/vim-localvimrc'
+	{
+		'nvim-telescope/telescope.nvim',
+		dependencies = { 'nvim-lua/plenary.nvim' }
+	},
+	-- Stabilize buffers
+	{ 'luukvbaal/stabilize.nvim' },
 
-		-- Disable search highlight when done searching
-		use 'romainl/vim-cool'
+	-- Autoload/save session
+	{
+		'Shatur/neovim-session-manager',
+		dependencies = {  'nvim-lua/plenary.nvim'  }
+	},
 
-		-- Vim tmux seamless navigation
-		use 'christoomey/vim-tmux-navigator'
+	-- Trim trailing whitespaces
+	{ 'cappyzawa/trim.nvim' },
 
-		-- Barline
-		use 'romgrk/barbar.nvim'
+	-- Center buffer
+	{ "shortcuts/no-neck-pain.nvim" },
 
-		-- Treesitter
-		use { 'nvim-treesitter/nvim-treesitter' }
+	-- Detect file indent
+	{ 'tpope/vim-sleuth' },
+	{ 'nvim-mini/mini.nvim', version = '*' },
 
-		-- Display current function name
-		use 'nvim-treesitter/nvim-treesitter-context'
+	{
+		"gruvw/strudel.nvim",
+		build = "npm install",
+		config = function()
+			require("strudel").setup()
+		end,
+	},
 
-		-- Fuzzy finder
-		use {
-			'nvim-telescope/telescope.nvim',
-			requires = {
-				{ 'nvim-lua/plenary.nvim' },
-				{ "nvim-telescope/telescope-live-grep-args.nvim" },
-			},
-			config = function()
-				require("telescope").setup {
-					defaults = {
-						path_display = { "truncate" },
-						dynamic_preview_title = true
-					}
-				}
-
-				require("telescope").load_extension("live_grep_args")
-			end
-		}
-
-		-- Zen mode
-		use 'folke/zen-mode.nvim'
-
-		-- Stabilize buffers
-		use 'luukvbaal/stabilize.nvim'
-
-		-- Autoload/save session
-		use {
-			'Shatur/neovim-session-manager',
-			requires = { { 'nvim-lua/plenary.nvim' } }
-		}
-
-		-- Trim trailing whitespaces
-		use 'cappyzawa/trim.nvim'
-
-		-- Center buffer
-		use { "shortcuts/no-neck-pain.nvim", tag = "*" }
-
-		if packer_bootstrap then
-			require('packer').sync()
-		end
-	end,
-	config = {
-		display = {
-			open_fn = require('packer.util').float,
-		}
-	}
+	install = { colorscheme = { "nightfox" } },
+	checker = { enabled = true },
 })

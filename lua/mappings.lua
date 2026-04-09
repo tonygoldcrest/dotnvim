@@ -1,32 +1,24 @@
 -- Tree Explorer
-vim.keymap.set('n', '<Leader>r', '<Cmd>NvimTreeToggle<CR>')
-vim.keymap.set('n', '<Leader>f', '<Cmd>NvimTreeFindFile<CR>')
-
--- Source vimrc/current file
-vim.keymap.set('n', '<Leader>sv', '<Cmd>luafile $MYVIMRC<CR>')
-vim.keymap.set('n', '<Leader>sf', '<Cmd>luafile %<CR>')
-vim.keymap.set('n', '<Leader>ev', '<Cmd>e $MYVIMRC<CR>')
-
--- Tabs
-vim.keymap.set('n', 'H', '<Cmd>BufferPrevious<CR>')
-vim.keymap.set('n', 'L', '<Cmd>BufferNext<CR>')
-vim.keymap.set('n', '<Leader>qq', '<Cmd>BufferClose<CR>')
-vim.keymap.set('n', '<Leader>qr', '<Cmd>BufferCloseBuffersRight<CR>')
-vim.keymap.set('n', '<Leader>ql', '<Cmd>BufferCloseBuffersLeft<CR>')
-vim.keymap.set('n', '<Leader>qc', '<Cmd>BufferCloseAllButCurrent<CR>')
+vim.keymap.set('n', '<Leader>r', function() 
+  local _ = MiniFiles.close()
+  or MiniFiles.open()
+end)
+vim.keymap.set('n', '<Leader>f', function()
+  local _ = MiniFiles.close()
+    or MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+  vim.defer_fn(function()
+    MiniFiles.reveal_cwd()
+  end, 30)
+end)
 
 -- Telescope
 vim.keymap.set('n', '<C-p>', '<Cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<C-b>', '<Cmd>Telescope buffers<CR>')
-vim.keymap.set('n', '<Leader>a', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+vim.keymap.set('n', '<Leader>a', "<Cmd>Telescope live_grep<CR>")
 vim.keymap.set('n', '<Leader>ds', '<Cmd>Telescope diagnostics<CR>')
 
--- Diagnostics
-vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-
 -- ZenMode
-vim.keymap.set('n', '<Leader>z', '<Cmd>ZenMode<CR>')
+vim.keymap.set('n', '<Leader>z', '<Cmd>NoNeckPain<CR>')
 
 -- Autofix
 vim.keymap.set('n', '<Leader>p', '<Cmd>EslintFixAll<CR>')
@@ -46,3 +38,14 @@ vim.keymap.set({ 'i', 's' }, '<Tab>', function()
 		return '<Tab>'
 	end
 end, { expr = true })
+
+-- Strudel
+local strudel = require("strudel")
+
+vim.keymap.set("n", "<leader>sl", strudel.launch, { desc = "Launch Strudel" })
+vim.keymap.set("n", "<leader>sq", strudel.quit, { desc = "Quit Strudel" })
+vim.keymap.set("n", "<leader>st", strudel.toggle, { desc = "Strudel Toggle Play/Stop" })
+vim.keymap.set("n", "<leader>su", strudel.update, { desc = "Strudel Update" })
+vim.keymap.set("n", "<leader>ss", strudel.stop, { desc = "Strudel Stop Playback" })
+vim.keymap.set("n", "<leader>sb", strudel.set_buffer, { desc = "Strudel set current buffer" })
+vim.keymap.set("n", "<leader>sx", strudel.execute, { desc = "Strudel set current buffer and update" })
