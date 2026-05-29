@@ -3,3 +3,7 @@ vim.api.nvim_create_autocmd(
 		pattern = { "qf" },
 		command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
 	})
+
+vim.api.nvim_create_autocmd("CursorMoved", {
+	callback = function() vim.opt.hlsearch = false end,
+})
