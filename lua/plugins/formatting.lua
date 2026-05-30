@@ -1,6 +1,9 @@
 return {
 	{
 		"stevearc/conform.nvim",
+		keys = {
+			{ "<Leader>lf", function() require("conform").format({ async = true }) end, desc = "Format file" },
+		},
 		opts = {
 			formatters = {
 				asmfmt_gnu = {

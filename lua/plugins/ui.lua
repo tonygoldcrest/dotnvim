@@ -52,6 +52,9 @@ return {
 
 	{
 		"shortcuts/no-neck-pain.nvim",
+		keys = {
+			{ "<Leader>z", "<Cmd>NoNeckPain<CR>", desc = "Zen mode" },
+		},
 		opts = {
 			width = 150,
 			minSideBufferWidth = 0,

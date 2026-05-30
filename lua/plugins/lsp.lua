@@ -7,9 +7,28 @@ return {
 				ft = "lua",
 				opts = {},
 			},
-			{ "williamboman/mason.nvim", opts = {} },
+			{ "williamboman/mason.nvim",          opts = {} },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "hrsh7th/cmp-nvim-lsp" },
+		},
+		keys = {
+			{
+				"<Leader>p",
+				function()
+					local bufnr = vim.api.nvim_get_current_buf()
+					local client = vim.lsp.get_clients({ bufnr = bufnr, name = "eslint" })[1]
+					if not client then return end
+					client:request_sync("workspace/executeCommand", {
+						command = "eslint.applyAllFixes",
+						arguments = {
+							{ uri = vim.uri_from_bufnr(bufnr), version = vim.lsp.util.buf_versions[bufnr] },
+						},
+					}, nil, bufnr)
+				end,
+				desc = "ESLint fix all"
+			},
+			{ "[d", vim.diagnostic.goto_prev, noremap = true, silent = true, desc = "Prev diagnostic" },
+			{ "]d", vim.diagnostic.goto_next, noremap = true, silent = true, desc = "Next diagnostic" },
 		},
 		config = function()
 			local servers = { "lua_ls", "ts_ls", "eslint", "rust_analyzer", "tailwindcss", "cssls", "clangd" }

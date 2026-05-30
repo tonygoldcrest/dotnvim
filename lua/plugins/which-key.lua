@@ -8,14 +8,14 @@ return {
 			wk.setup({})
 
 			wk.add({
-				{ "<leader>l", group = "lsp" },
-				{ "<leader>w", group = "workspace" },
-				{ "<leader>s", group = "strudel" },
-					{ "<leader>sa", desc = "Surround add" },
+				{ "<leader>l",  group = "lsp" },
+				{ "<leader>w",  group = "workspace" },
+				{ "<leader>s",  group = "strudel" },
+				{ "<leader>sa", desc = "Surround add" },
 				{ "<leader>sd", desc = "Surround delete" },
 				{ "<leader>sr", desc = "Surround replace" },
-				{ "]",         group = "next" },
-				{ "[",         group = "prev" },
+				{ "]",          group = "next" },
+				{ "[",          group = "prev" },
 			})
 		end,
 	},

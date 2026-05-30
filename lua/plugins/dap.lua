@@ -2,7 +2,7 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			{ "rcarriga/nvim-dap-ui", dependencies = { "nvim-neotest/nvim-nio" } },
+			{ "rcarriga/nvim-dap-ui",   dependencies = { "nvim-neotest/nvim-nio" } },
 			{ "williamboman/mason.nvim" },
 		},
 		config = function()
@@ -50,13 +50,13 @@ return {
 
 			-- Keymaps
 			local k = vim.keymap.set
-			k("n", "<Leader>db", dap.toggle_breakpoint,           { desc = "DAP toggle breakpoint" })
-			k("n", "<Leader>dc", dap.continue,                    { desc = "DAP continue" })
-			k("n", "<Leader>dn", dap.step_over,                   { desc = "DAP step over" })
-			k("n", "<Leader>di", dap.step_into,                   { desc = "DAP step into" })
-			k("n", "<Leader>do", dap.step_out,                    { desc = "DAP step out" })
-			k("n", "<Leader>dq", dap.terminate,                   { desc = "DAP terminate" })
-			k("n", "<Leader>du", dapui.toggle,                    { desc = "DAP toggle UI" })
+			k("n", "<Leader>db", dap.toggle_breakpoint, { desc = "DAP toggle breakpoint" })
+			k("n", "<Leader>dc", dap.continue, { desc = "DAP continue" })
+			k("n", "<Leader>dn", dap.step_over, { desc = "DAP step over" })
+			k("n", "<Leader>di", dap.step_into, { desc = "DAP step into" })
+			k("n", "<Leader>do", dap.step_out, { desc = "DAP step out" })
+			k("n", "<Leader>dq", dap.terminate, { desc = "DAP terminate" })
+			k("n", "<Leader>du", dapui.toggle, { desc = "DAP toggle UI" })
 		end,
 	},
 }

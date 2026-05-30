@@ -37,28 +37,34 @@ return {
 					local rep    = require("nvim-treesitter-textobjects.repeatable_move")
 
 					-- Select
-					local sel = function(obj) return function() select.select_textobject(obj, "textobjects") end end
+					local sel    = function(obj) return function() select.select_textobject(obj, "textobjects") end end
 					vim.keymap.set({ "x", "o" }, "af", sel("@function.outer"), { desc = "outer function" })
 					vim.keymap.set({ "x", "o" }, "if", sel("@function.inner"), { desc = "inner function" })
-					vim.keymap.set({ "x", "o" }, "ac", sel("@class.outer"),    { desc = "outer class" })
-					vim.keymap.set({ "x", "o" }, "ic", sel("@class.inner"),    { desc = "inner class" })
+					vim.keymap.set({ "x", "o" }, "ac", sel("@class.outer"), { desc = "outer class" })
+					vim.keymap.set({ "x", "o" }, "ic", sel("@class.inner"), { desc = "inner class" })
 					vim.keymap.set({ "x", "o" }, "aa", sel("@parameter.outer"), { desc = "outer parameter" })
 					vim.keymap.set({ "x", "o" }, "ia", sel("@parameter.inner"), { desc = "inner parameter" })
-					vim.keymap.set({ "x", "o" }, "ab", sel("@block.outer"),    { desc = "outer block" })
-					vim.keymap.set({ "x", "o" }, "ib", sel("@block.inner"),    { desc = "inner block" })
+					vim.keymap.set({ "x", "o" }, "ab", sel("@block.outer"), { desc = "outer block" })
+					vim.keymap.set({ "x", "o" }, "ib", sel("@block.inner"), { desc = "inner block" })
 
 					-- Move (repeatable with ; and ,)
-					local next_fn_start  = rep.make_repeatable_move(function() move.goto_next_start("@function.outer", "textobjects") end)
-					local prev_fn_start  = rep.make_repeatable_move(function() move.goto_previous_start("@function.outer", "textobjects") end)
-					local next_fn_end    = rep.make_repeatable_move(function() move.goto_next_end("@function.outer", "textobjects") end)
-					local prev_fn_end    = rep.make_repeatable_move(function() move.goto_previous_end("@function.outer", "textobjects") end)
-					local next_cls_start = rep.make_repeatable_move(function() move.goto_next_start("@class.outer", "textobjects") end)
-					local prev_cls_start = rep.make_repeatable_move(function() move.goto_previous_start("@class.outer", "textobjects") end)
+					local next_fn_start  = rep.make_repeatable_move(function() move.goto_next_start("@function.outer",
+							"textobjects") end)
+					local prev_fn_start  = rep.make_repeatable_move(function() move.goto_previous_start(
+						"@function.outer", "textobjects") end)
+					local next_fn_end    = rep.make_repeatable_move(function() move.goto_next_end("@function.outer",
+							"textobjects") end)
+					local prev_fn_end    = rep.make_repeatable_move(function() move.goto_previous_end("@function.outer",
+							"textobjects") end)
+					local next_cls_start = rep.make_repeatable_move(function() move.goto_next_start("@class.outer",
+							"textobjects") end)
+					local prev_cls_start = rep.make_repeatable_move(function() move.goto_previous_start("@class.outer",
+							"textobjects") end)
 
-					vim.keymap.set({ "n", "x", "o" }, "]f", next_fn_start,  { desc = "next function start" })
-					vim.keymap.set({ "n", "x", "o" }, "[f", prev_fn_start,  { desc = "prev function start" })
-					vim.keymap.set({ "n", "x", "o" }, "]F", next_fn_end,    { desc = "next function end" })
-					vim.keymap.set({ "n", "x", "o" }, "[F", prev_fn_end,    { desc = "prev function end" })
+					vim.keymap.set({ "n", "x", "o" }, "]f", next_fn_start, { desc = "next function start" })
+					vim.keymap.set({ "n", "x", "o" }, "[f", prev_fn_start, { desc = "prev function start" })
+					vim.keymap.set({ "n", "x", "o" }, "]F", next_fn_end, { desc = "next function end" })
+					vim.keymap.set({ "n", "x", "o" }, "[F", prev_fn_end, { desc = "prev function end" })
 					vim.keymap.set({ "n", "x", "o" }, "]c", next_cls_start, { desc = "next class start" })
 					vim.keymap.set({ "n", "x", "o" }, "[c", prev_cls_start, { desc = "prev class start" })
 
@@ -66,8 +72,10 @@ return {
 					vim.keymap.set({ "n", "x", "o" }, ",", rep.repeat_last_move_previous)
 
 					-- Swap parameters
-					vim.keymap.set("n", "<M-l>", function() swap.swap_next("@parameter.inner") end,     { desc = "swap next parameter" })
-					vim.keymap.set("n", "<M-h>", function() swap.swap_previous("@parameter.inner") end, { desc = "swap prev parameter" })
+					vim.keymap.set("n", "<M-l>", function() swap.swap_next("@parameter.inner") end,
+						{ desc = "swap next parameter" })
+					vim.keymap.set("n", "<M-h>", function() swap.swap_previous("@parameter.inner") end,
+						{ desc = "swap prev parameter" })
 				end,
 			},
 		},

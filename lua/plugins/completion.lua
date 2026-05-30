@@ -39,12 +39,20 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "lazydev", group_index = 0 },
+					{ name = "lazydev",                group_index = 0 },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
 				}),
 			})
+
+			vim.keymap.set({ "i", "s" }, "<Tab>", function()
+				if vim.snippet.active({ direction = 1 }) then
+					return "<cmd>lua vim.snippet.jump(1)<cr>"
+				else
+					return "<Tab>"
+				end
+			end, { expr = true, desc = "Jump snippet / Tab" })
 		end,
 	},
 }

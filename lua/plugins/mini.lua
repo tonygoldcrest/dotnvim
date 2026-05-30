@@ -2,6 +2,17 @@ return {
 	{
 		"nvim-mini/mini.nvim",
 		version = "*",
+		keys = {
+			{ "<Leader>r", function() local _ = MiniFiles.close() or MiniFiles.open() end, desc = "File explorer" },
+			{
+				"<Leader>f",
+				function()
+					local _ = MiniFiles.close() or MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+					vim.defer_fn(function() MiniFiles.reveal_cwd() end, 30)
+				end,
+				desc = "File explorer (current file)"
+			},
+		},
 		config = function()
 			require("mini.files").setup()
 
@@ -15,8 +26,8 @@ return {
 						MiniFiles.close()
 						vim.cmd(direction .. " " .. vim.fn.fnameescape(entry.path))
 					end
-					vim.keymap.set("n", "<C-s>", function() open_split("split") end,   { buffer = buf })
-					vim.keymap.set("n", "<C-v>", function() open_split("vsplit") end,  { buffer = buf })
+					vim.keymap.set("n", "<C-s>", function() open_split("split") end, { buffer = buf })
+					vim.keymap.set("n", "<C-v>", function() open_split("vsplit") end, { buffer = buf })
 					vim.keymap.set("n", "gy", function()
 						local entry = MiniFiles.get_fs_entry()
 						if not entry then return end
